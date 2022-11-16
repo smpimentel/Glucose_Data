@@ -1,16 +1,22 @@
-// mousewheel or two-finger scroll zooms the plot
+function buildCharts(sample) {
+    d3.json("cleaned_data.json").then((d) => {
+        var Time = d.Time;
+        var Glucose = d.Glucose;
 
-var trace1 = {
-    x:['2020-10-04', '2021-11-04', '2023-12-04'],
-    y: [90, 40, 60],
-    type: 'scatter'
-};
 
-var data = [trace1];
+        var trace1 = {
+            x: Time,
+            y: Glucose,
+            type: 'scatter'
+        };
 
-var layout = {
-    title: 'Scroll and Zoom',
-    showlegend: false
-};
+        var data = [trace1];
 
-Plotly.newPlot('myDiv', data, layout, {scrollZoom: true});
+        var layout = {
+            title: 'Scroll and Zoom',
+            showlegend: false
+        };
+    };
+
+    Plotly.newPlot('myDiv', data, layout, {scrollZoom: true});
+}
