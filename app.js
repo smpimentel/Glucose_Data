@@ -1,22 +1,17 @@
-function buildCharts(sample) {
-    d3.json("cleaned_data.json").then((d) => {
-        var Time = d.Time;
-        var Glucose = d.Glucose;
+var json = require('./cleaned_csv/cleaned_data.json'); //with path
+var time = json.Time;
+var glucose = json.Glucose;
 
+var trace1 = {
+    x: time,
+   y: glucose,
+   type: 'scatter'
+};
 
-        var trace1 = {
-            x: Time,
-            y: Glucose,
-            type: 'scatter'
-        };
+var data = [trace1];
 
-        var data = [trace1];
+var layout = {
+   title: 'Scroll and Zoom',
+   showlegend: false};
 
-        var layout = {
-            title: 'Scroll and Zoom',
-            showlegend: false
-        };
-    };
-
-    Plotly.newPlot('myDiv', data, layout, {scrollZoom: true});
-}
+Plotly.newPlot('myDiv', data, layout, {scrollZoom: true});
